@@ -11,7 +11,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     @IBOutlet weak var backGroundPriceLabel: UILabel!
     
-    @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var vatButton: UIButton!
+    
     
     
     var pickerVat = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50",]
@@ -21,8 +22,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         backGroundPriceLabel.layer.masksToBounds = true
         backGroundPriceLabel.layer.cornerRadius = 15
         
-        picker.delegate = self
-        picker.dataSource = self
     }
 
     //MARK: picker
@@ -35,6 +34,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
+        return String("\(pickerVat[row])%")
     }
     
     //MARK: Service VAR
@@ -164,6 +164,36 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
+    //MARK: Action
+ 
+    var toolBar = UIToolbar()
+    var picker = UIPickerView()
+    
+    @objc func onDoneButtonTapped() {
+        toolBar.removeFromSuperview()
+        picker.removeFromSuperview()
+    }
+    
+    @IBAction func vatButtonTapped(_ sender: UIButton) {
+        
+        picker = UIPickerView.init()
+        picker.delegate = self
+        picker.dataSource = self
+        picker.layer.cornerRadius = 10
+        picker.layer.borderWidth = 1
+        picker.layer.borderColor = CGColor(gray: 3, alpha: 1)
+        picker.backgroundColor = UIColor.systemGray3
+        picker.setValue(UIColor.black, forKey: "textColor")
+        picker.autoresizingMask = .flexibleWidth
+        picker.contentMode = .center
+        picker.frame = CGRect.init(x: (UIScreen.main.bounds.size.width / 2) - 100, y: (UIScreen.main.bounds.size.width / 2) - 100, width: 200, height: 100)
+           self.view.addSubview(picker)
+                   
+           toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
+           //toolBar.barStyle = .blackTranslucent
+           toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
+           self.view.addSubview(toolBar)
+    }
     
     
     
