@@ -170,7 +170,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var picker = UIPickerView()
     
     @objc func onDoneButtonTapped() {
-        toolBar.removeFromSuperview()
+        //toolBar.removeFromSuperview()
         picker.removeFromSuperview()
     }
     
@@ -180,19 +180,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         picker.delegate = self
         picker.dataSource = self
         picker.layer.cornerRadius = 10
-        picker.layer.borderWidth = 1
+        picker.layer.borderWidth = 1.5
         picker.layer.borderColor = CGColor(gray: 3, alpha: 1)
         picker.backgroundColor = UIColor.systemGray3
         picker.setValue(UIColor.black, forKey: "textColor")
         picker.autoresizingMask = .flexibleWidth
         picker.contentMode = .center
-        picker.frame = CGRect.init(x: (UIScreen.main.bounds.size.width / 2) - 100, y: (UIScreen.main.bounds.size.width / 2) - 100, width: 200, height: 100)
+        picker.frame = CGRect.init(x: (UIScreen.main.bounds.size.width / 2) - 150, y: (UIScreen.main.bounds.size.height / 2) - 100, width: 300, height: 150)
            self.view.addSubview(picker)
                    
-           toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
+           //toolBar = UIToolbar.init(frame: CGRect.init(x: (UIScreen.main.bounds.size.width / 2) - 150, y: (UIScreen.main.bounds.size.height / 2) - 140, width: 300, height: 40))
            //toolBar.barStyle = .blackTranslucent
-           toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
-           self.view.addSubview(toolBar)
+        //toolBar.items = [UIBarButtonItem.init(title: "Select", style: .plain, target: self, action: #selector(onDoneButtonTapped))]
+        //toolBar.barTintColor = UIColor.systemGray6
+           //self.view.addSubview(toolBar)
     }
     
     
