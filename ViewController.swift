@@ -24,7 +24,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
     }
 
-    //MARK: picker
+    //MARK: Picker
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -35,6 +35,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return String("\(pickerVat[row])%")
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selected = pickerVat[row]
+        picker.removeFromSuperview()
+        UserDefaults.standard.set(selected, forKey: "vatValue")
+        vatButton.titleLabel?.text = String("\(selected)%")
     }
     
     //MARK: Service VAR
@@ -166,13 +172,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     //MARK: Action
  
-    var toolBar = UIToolbar()
     var picker = UIPickerView()
-    
-    @objc func onDoneButtonTapped() {
-        //toolBar.removeFromSuperview()
-        picker.removeFromSuperview()
-    }
     
     @IBAction func vatButtonTapped(_ sender: UIButton) {
         
@@ -188,12 +188,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         picker.contentMode = .center
         picker.frame = CGRect.init(x: (UIScreen.main.bounds.size.width / 2) - 150, y: (UIScreen.main.bounds.size.height / 2) - 100, width: 300, height: 150)
            self.view.addSubview(picker)
-                   
-           //toolBar = UIToolbar.init(frame: CGRect.init(x: (UIScreen.main.bounds.size.width / 2) - 150, y: (UIScreen.main.bounds.size.height / 2) - 140, width: 300, height: 40))
-           //toolBar.barStyle = .blackTranslucent
-        //toolBar.items = [UIBarButtonItem.init(title: "Select", style: .plain, target: self, action: #selector(onDoneButtonTapped))]
-        //toolBar.barTintColor = UIColor.systemGray6
-           //self.view.addSubview(toolBar)
     }
     
     
