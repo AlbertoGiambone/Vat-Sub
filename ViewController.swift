@@ -23,8 +23,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         backGroundPriceLabel.layer.cornerRadius = 15
         
         vatButton.titleLabel?.textColor = .white
-        vatButton.titleLabel?.text = UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0%"
-    }
+        vatButton.setTitle(UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0%", for: .normal)    }
 
     //MARK: Picker
     
@@ -42,7 +41,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let selected = pickerVat[row]
         picker.removeFromSuperview()
         UserDefaults.standard.set(selected, forKey: "vatValue")
-        vatButton.titleLabel?.text = UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0%"
+        
+        vatButton.setTitle(UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0%", for: .normal)
+        //vatButton.titleLabel?.text = UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0%"
         
         print(UserDefaults.standard.object(forKey: "vatValue") as? String ?? "")
         
