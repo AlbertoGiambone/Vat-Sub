@@ -21,9 +21,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         super.viewDidLoad()
         backGroundPriceLabel.layer.masksToBounds = true
         backGroundPriceLabel.layer.cornerRadius = 15
+        backGroundPriceLabel.layer.backgroundColor = CGColor(red: 106/255, green: 77/255, blue: 255/255, alpha: 1)
         
+        vatButton.layer.cornerRadius = 8
+        vatButton.layer.borderWidth = 2
+        vatButton.layer.borderColor = CGColor(red: 106/255, green: 77/255, blue: 255/255, alpha: 1)
+        vatButton.layer.backgroundColor = CGColor(red: 0.82, green: 0.84, blue: 0.85, alpha: 1)
         vatButton.titleLabel?.textColor = .white
-        vatButton.setTitle(UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0%", for: .normal)    }
+        var vatSaved = UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0"
+        vatButton.setTitle(String("\(vatSaved)%"), for: .normal)    }
 
     //MARK: Picker
     
