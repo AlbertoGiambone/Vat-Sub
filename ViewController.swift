@@ -26,10 +26,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         vatButton.layer.cornerRadius = 8
         vatButton.layer.borderWidth = 2
         vatButton.layer.borderColor = CGColor(red: 106/255, green: 77/255, blue: 255/255, alpha: 1)
-        vatButton.layer.backgroundColor = CGColor(red: 0.82, green: 0.84, blue: 0.85, alpha: 1)
+        //vatButton.layer.backgroundColor = CGColor(red: 0.82, green: 0.84, blue: 0.85, alpha: 1)
         vatButton.titleLabel?.textColor = .white
         var vatSaved = UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0"
-        vatButton.setTitle(String("\(vatSaved)%"), for: .normal)    }
+        vatButton.setTitle(String("VAT: \(vatSaved)%"), for: .normal)
+        vatButton.setTitleColor(UIColor.darkText, for: .normal)
+        
+    }
 
     //MARK: Picker
     
@@ -48,7 +51,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         picker.removeFromSuperview()
         UserDefaults.standard.set(selected, forKey: "vatValue")
         
-        vatButton.setTitle(UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0%", for: .normal)
+        vatButton.setTitle(String("\(UserDefaults.standard.object(forKey: "vatValue")!)%"), for: .normal)
         //vatButton.titleLabel?.text = UserDefaults.standard.object(forKey: "vatValue") as? String ?? "0%"
         
         print(UserDefaults.standard.object(forKey: "vatValue") as? String ?? "")
